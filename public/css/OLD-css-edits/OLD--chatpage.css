@@ -1,0 +1,91 @@
+#GoBack_button {
+    position: absolute;
+    background-color: blue;
+    top: 2%;
+    padding: 1%;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.chat_container {
+    height: 80vh;
+    display: grid;
+    grid-template-rows: 90% 10%;
+
+    #messages_screen {
+        background-color: white;
+        padding: 1%;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+
+        #message_from_other {
+            border-radius: 0px 10px 10px 10px;
+            background-color: rgb(20, 14, 193);
+            color: white;
+            padding: 1%;
+            width: fit-content;
+            align-self: flex-start;
+        }
+
+        #message_from_me {
+            border-radius: 10px 0px 10px 10px;
+            background-color: rgb(49, 200, 41);
+            color: white;
+            padding: 1%;
+            width: fit-content;
+            align-self: flex-end;
+        }
+
+        #sender_info {
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 3%;
+            margin-bottom: 5%;
+
+            #sender_image {
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+            }
+        }
+
+        #message_sent {
+            font-size: 1.1rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        #date_sent {
+            color: rgba(255, 255, 255, 0.716);
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 75% 25%;
+
+        #message_content {
+            font-size: 1.1rem;
+            padding: 0 1%;
+            resize: none;
+        }
+
+        #send_button {
+            font-size: 1.1rem;
+            background-color: green;
+            color: white;
+        }
+
+        #send_button:active {
+            background-color: rgb(88, 144, 3);
+            font-weight: bold;
+        }
+    }
+}

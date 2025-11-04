@@ -1,0 +1,429 @@
+/* home-improved.scss
+   Replace your original styles with this SCSS (keeps your selectors unchanged).
+   Compile: sass home-improved.scss public/css/home.css
+*/
+
+:root {
+    --bg: #f6f8fa; /* page background */
+    --surface: #ffffff; /* cards */
+    --muted: #556070; /* secondary text */
+    --text: #0f1724; /* primary text */
+    --accent: #2563eb; /* primary accent (blue) */
+    --accent-strong: #1e40af;
+    --danger: #ef4444; /* red */
+    --success: #16a34a; /* green */
+    --muted-border: rgba(16, 24, 40, 0.06);
+    --card-radius: 12px;
+    --gutter: 18px;
+    --container-max: 1100px;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial;
+    --shadow-1: 0 6px 18px rgba(16, 24, 40, 0.04);
+}
+
+/* basic resets & accessibility improvements */
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: calc(var(--gutter) * 0.8);
+    font-family: var(--font-sans);
+    background: linear-gradient(180deg, var(--bg), #eef3fb 120%);
+    color: var(--muted);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; /* accessible baseline */
+    line-height: 1.45;
+}
+
+/* Scrollbar styling (visible but subtle) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 24, 40, 0.12) rgba(246, 248, 250, 0.6);
+}
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(16, 24, 40, 0.12);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* header */
+.firstHeaderInPage {
+    position: relative;
+    height: 60px;
+    padding: 0 1.2%;
+    max-width: var(--container-max);
+    margin: 0 auto calc(var(--gutter) * 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--surface);
+    border-radius: calc(var(--card-radius) - 2px);
+    border: 1px solid var(--muted-border);
+    box-shadow: var(--shadow-1);
+}
+
+/* profile image on left (preserve absolute pattern) */
+header > .leftSide > img {
+    height: 52px;
+    width: 52px;
+    position: absolute;
+    left: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(37, 99, 235, 0.08);
+    background: #fff;
+}
+
+/* right side - keep layout but clean nested rules */
+header > .rightSide {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-end;
+    width: calc(100% - 84px); /* leave room for left image */
+    padding-left: 8px;
+
+    p {
+        margin: 0;
+        text-transform: capitalize;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    button {
+        background-color: var(--danger);
+        padding: 8px 12px;
+        text-transform: capitalize;
+        border-radius: 10px;
+        color: white;
+        font-weight: 700;
+        border: none;
+        box-shadow: 0 8px 18px rgba(239, 68, 68, 0.12);
+        cursor: pointer;
+        transition: transform 0.12s ease, box-shadow 0.12s ease,
+            background 0.12s ease;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+    }
+    button:active {
+        transform: translateY(0);
+    }
+    button:focus-visible {
+        outline: 3px solid rgba(239, 68, 68, 0.16);
+        outline-offset: 3px;
+    }
+}
+
+/* main layout */
+.mainSections {
+    display: grid;
+    grid-template-columns: 1fr 320px; /* more flexible than 75/25 */
+    gap: 20px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    min-height: calc(100vh - 220px);
+    align-items: start;
+}
+
+/* posts column */
+.mainSections > #postsSection {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+    overflow: hidden; /* we will put scroll on inner container */
+    background: transparent;
+    min-height: 320px;
+}
+
+/* create post button */
+.mainSections > #postsSection > .createPostButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--success);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 1rem;
+    z-index: 10;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(16, 148, 95, 0.08);
+}
+.createPostButton:focus-visible {
+    outline: 3px solid rgba(16, 148, 95, 0.14);
+    outline-offset: 3px;
+}
+
+/* posts inner scrollable area */
+.mainSections > #postsSection > .postsContainer {
+    margin-top: 0; /* space for create button */
+    overflow-y: auto;
+    padding: 12px;
+    max-height: calc(100vh - 300px);
+    -webkit-overflow-scrolling: touch;
+}
+
+/* posts list */
+.mainSections > #postsSection > .postsContainer > .posts {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* each post card */
+.mainSections > #postsSection > .postsContainer > .posts > .post {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--muted-border);
+    background: var(--surface);
+    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.03);
+    margin: 0 auto;
+    padding: 12px;
+}
+
+/* post header inside the card */
+.mainSections > #postsSection > .postsContainer > .posts > .post > header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.mainSections
+    > #postsSection
+    > .postsContainer
+    > .posts
+    > .post
+    > header
+    > .name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mainSections
+    > #postsSection
+    > .postsContainer
+    > .posts
+    > .post
+    > header
+    .date {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* small avatar inside post */
+.mainSections > #postsSection > .postsContainer > .posts > .post img {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(0, 0, 0, 0.04);
+}
+
+/* content area */
+.mainSections > #postsSection > .postsContainer > .posts > .post .postContent {
+    padding: 10px 8px;
+    text-align: left;
+    background-color: #fbfdff;
+    color: var(--text);
+    border-radius: 8px;
+    margin-top: 6px;
+}
+
+/* footer area inside post */
+.mainSections > #postsSection > .postsContainer > .posts > .post footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    gap: 12px;
+}
+
+/* likes info */
+.mainSections
+    > #postsSection
+    > .postsContainer
+    > .posts
+    > .post
+    footer
+    .likesInfo {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #6b7280;
+    align-items: center;
+}
+
+.mainSections
+    > #postsSection
+    > .postsContainer
+    > .posts
+    > .post
+    footer
+    .likesButtons
+    .like {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* like/dislike specific */
+.mainSections
+    > #postsSection
+    > .postsContainer
+    > .posts
+    > .post
+    footer
+    .likesButtons
+    .like {
+    background: linear-gradient(180deg, #2b6df6, var(--accent));
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+}
+
+/* people column */
+.mainSections > #peopleSection {
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid var(--muted-border);
+    height: auto;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* public chat container */
+.mainSections > #peopleSection > #public_chat_container {
+    align-self: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    background: linear-gradient(
+        180deg,
+        rgba(37, 99, 235, 0.06),
+        rgba(6, 182, 212, 0.03)
+    );
+    border: 1px solid rgba(37, 99, 235, 0.09);
+    gap: 8px;
+}
+.mainSections > #peopleSection > #public_chat_container span {
+    font-weight: 700;
+    color: var(--text);
+}
+#public_chat_icon {
+    height: 36px;
+    width: 36px;
+    fill: var(--accent);
+}
+
+/* hover/focus states for public chat */
+.mainSections > #peopleSection > #public_chat_container:hover,
+.mainSections > #peopleSection > #public_chat_container:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
+    outline: none;
+}
+
+/* people list */
+.mainSections > #peopleSection > ul {
+    display: flex;
+    flex-direction: column;
+    margin: 8px auto 0;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: calc(100vh - 420px);
+}
+
+/* each person entry */
+.mainSections > #peopleSection > ul > li {
+    border-radius: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.12s ease, transform 0.08s ease;
+    border: 1px solid transparent;
+}
+.mainSections > #peopleSection > ul > li:hover {
+    background: rgba(37, 99, 235, 0.06);
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
+/* person avatar */
+.mainSections > #peopleSection > ul > li img {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* responsive adjustments */
+@media (max-width: 900px) {
+    .mainSections {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .mainSections > #postsSection > .postsContainer {
+        max-height: none;
+        margin-top: 12px;
+    }
+    .mainSections > #peopleSection {
+        min-height: auto;
+        order: 2;
+    }
+}
+
+/* keyboard accessibility: focus-visible */
+:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.14);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+}

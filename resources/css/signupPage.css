@@ -1,0 +1,186 @@
+/* signupPage.css - styles for .register_form */
+:root {
+    --page-bg: #f6f8fa;
+    --card: #ffffff;
+    --text: #0b1220;
+    --muted: #556070;
+    --accent: #2563eb;
+    --success: #16a34a;
+    --danger: #ef4444;
+    --muted-border: rgba(16, 24, 40, 0.07);
+    --radius: 12px;
+    --gutter: 18px;
+    --max-width: 700px;
+    --shadow: 0 10px 30px rgba(16, 24, 40, 0.04);
+    --focus: rgba(37, 99, 235, 0.16);
+}
+
+/* page baseline */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: linear-gradient(180deg, var(--page-bg), #eef3fb);
+    -webkit-font-smoothing: antialiased;
+}
+h1 {
+    text-align: center;
+    color: var(--text);
+    margin: 20px 0 8px;
+    font-size: 1.5rem;
+}
+
+/* form container */
+.register_form {
+    max-width: var(--max-width);
+    margin: 18px auto;
+    background: var(--card);
+    border-radius: calc(var(--radius) - 2px);
+    padding: 22px;
+    border: 1px solid var(--muted-border);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* label + input rows */
+.register_form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* label */
+.register_form label {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* text / email / password / file inputs and select */
+.register_form input[type="text"],
+.register_form input[type="email"],
+.register_form input[type="password"],
+.register_form input[type="file"],
+.register_form select,
+.register_form textarea {
+    font-size: 1rem;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--muted-border);
+    background: #fbfdff;
+    color: var(--text);
+    outline: none;
+    transition: box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+/* textarea (if used) sizing */
+.register_form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* file input: make it friendlier on wide screens */
+.register_form input[type="file"] {
+    padding: 6px 8px;
+}
+
+/* focus states for accessibility */
+.register_form input:focus,
+.register_form select:focus,
+.register_form textarea:focus,
+.register_form input[type="file"]:focus {
+    box-shadow: 0 10px 24px var(--focus);
+    border-color: rgba(37, 99, 235, 0.22);
+}
+
+/* error message */
+#error_message {
+    display: block;
+    text-align: center;
+    color: var(--danger);
+    font-size: 1.05rem;
+    min-height: 1.2rem;
+}
+
+/* submit button */
+.register_form button[type="submit"] {
+    margin: 6px auto 0;
+    padding: 10px 18px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(180deg, var(--success), #0ea85a);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(16, 148, 95, 0.08);
+    min-width: 180px;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+.register_form button[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+.register_form button[type="submit"]:active {
+    transform: translateY(0);
+}
+.register_form button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* footer text (login link) */
+.register_form p {
+    text-align: center;
+    margin: 8px 0 0;
+    color: var(--muted);
+}
+.register_form a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+}
+.register_form a:hover {
+    text-decoration: underline;
+}
+
+/* small screens: full width and tighter spacing */
+@media (max-width: 720px) {
+    .register_form {
+        padding: 14px;
+        gap: 12px;
+        margin: 12px;
+    }
+    h1 {
+        font-size: 1.25rem;
+        margin-top: 12px;
+    }
+    .register_form button[type="submit"] {
+        width: 100%;
+        min-width: 0;
+        padding: 12px;
+    }
+    .register_form input[type="file"] {
+        font-size: 0.95rem;
+    }
+}
+
+/* focus visible for keyboard users (global) */
+:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

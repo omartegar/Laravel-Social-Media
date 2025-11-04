@@ -1,0 +1,35 @@
+.postCreateForm {
+    label {
+        font-size: 1.3rem;
+    }
+    textarea {
+        min-width: 95%;
+        max-width: 95%;
+        padding: 1%;
+        font-size: 1.2rem;
+    }
+
+    div {
+        text-align: center;
+    }
+    div > button[type="submit"] {
+        padding: 1%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        background-color: green;
+        border-radius: 10px;
+    }
+
+    .goBackButton {
+        position: absolute;
+        top: 2%;
+        left: 1%;
+        padding: 0.5%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(14, 54, 196);
+        border-radius: 10px;
+    }
+}

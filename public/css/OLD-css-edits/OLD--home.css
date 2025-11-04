@@ -1,0 +1,225 @@
+/* pages/home.blade.php */
+
+* {
+    scrollbar-width: none;
+}
+.firstHeaderInPage {
+    text-align: right;
+    padding: 0 1%;
+    border: 2px solid black;
+    position: relative;
+    height: 50px;
+}
+
+header > .leftSide > img {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 1%;
+    border-radius: 50%;
+}
+
+header > .rightSide {
+    position: absolute;
+    gap: 1%;
+    right: 1%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+
+    p {
+        text-transform: capitalize;
+        font-size: 1.1rem;
+    }
+    button {
+        background-color: red;
+        padding: 1% 2%;
+        text-transform: capitalize;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+    }
+}
+.mainSections {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    height: 80vh;
+    max-height: 80vh;
+    overflow-x: scroll;
+}
+.mainSections > #postsSection {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.mainSections > #postsSection > .createPostButton {
+    position: absolute;
+    background-color: green;
+    padding: 1%;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1rem;
+    z-index: 3;
+    top: 1%;
+    right: 1%;
+}
+.mainSections
+    > #postsSection
+    > .postsContainer
+    > .posts
+    > .post
+    > header
+    > .name
+    > .deletePostButton {
+    top: 2%;
+    right: 1%;
+
+    position: absolute;
+}
+
+.mainSections > #postsSection > .postsContainer > .posts {
+    padding: 0;
+    list-style-type: none;
+    list-style-position: inside;
+}
+
+.mainSections > #postsSection > .postsContainer > .posts > .post > header {
+    position: relative;
+}
+
+.mainSections > #postsSection > .postsContainer > .posts > .post {
+    margin: 20px auto;
+    width: 99%;
+    border: 3px solid rgb(0, 0, 0);
+    overflow: hidden;
+    border-radius: 15px;
+
+    header {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        padding: 0% 1%;
+        .name {
+            display: flex;
+            align-items: center;
+            gap: 2%;
+        }
+        .date {
+            font-size: 0.8rem;
+            color: rgb(109, 109, 109);
+        }
+    }
+
+    img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .postContent {
+        padding: 0.1% 1%;
+        text-align: left;
+        background-color: rgb(227, 225, 225);
+    }
+
+    footer .likesInfo {
+        display: flex;
+        gap: 5%;
+        line-height: 0%;
+        padding: 0 1%;
+        background-color: rgb(241, 241, 241);
+        font-size: 0.8rem;
+    }
+
+    footer .likesButtons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .like {
+            background-color: blue;
+            color: white;
+            font-size: 1rem;
+            padding: 1% 0;
+        }
+        .dislike {
+            background-color: red;
+            color: white;
+            font-size: 1rem;
+            padding: 1% 0;
+        }
+    }
+}
+
+.mainSections > #peopleSection {
+    text-align: center;
+    border: 1px solid brown;
+    background-color: rgb(214, 219, 221);
+    overflow-x: scroll;
+    scrollbar-width: thin;
+}
+
+.mainSections > #peopleSection > #public_chat_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    width: fit-content;
+    margin: auto;
+    padding: 1% 1%;
+    cursor: pointer;
+
+    span {
+        font-weight: bold;
+        color: black;
+    }
+
+    #public_chat_icon {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+.mainSections > #peopleSection > #public_chat_container:active,
+.mainSections > #peopleSection > #public_chat_container:hover {
+    background-color: gray;
+    color: white;
+}
+
+.mainSections > #peopleSection > ul {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    list-style-type: none;
+    list-style-position: inside;
+    padding: 2% 0; /* fixes inherited padding from another parent */
+}
+
+.mainSections > #peopleSection > ul > li {
+    border: 1px solid black;
+    display: flex;
+    gap: 1%;
+    align-items: center;
+    padding: 2% 0;
+    padding-left: 2%;
+    text-align: left;
+}
+
+.mainSections > #peopleSection > ul > li:hover {
+    background-color: rgb(145, 136, 136);
+    color: white;
+    cursor: pointer;
+}
+
+.mainSections > #peopleSection > ul > li img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}

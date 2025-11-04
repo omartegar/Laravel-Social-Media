@@ -1,0 +1,282 @@
+:root {
+    --bg: #f6f8fa;
+    --surface: #ffffff;
+    --text: #0b1220;
+    --muted: #556070;
+    --accent-blue: #2563eb;
+    --accent-green: #10b981; /* your "me" bubble */
+    --danger: #ef4444;
+    --muted-border: rgba(16, 24, 40, 0.06);
+    --radius: 12px;
+    --gutter: 12px;
+}
+
+/* global */
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial;
+}
+body {
+    background: linear-gradient(180deg, var(--bg), #eef3fb 120%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Go back button */
+#GoBack_button {
+    position: absolute;
+    background-color: var(--accent-blue);
+    top: 12px;
+    left: 12px;
+    padding: 8px 12px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+}
+#GoBack_button:hover {
+    transform: translateY(-2px);
+    transition: transform 0.12s ease;
+}
+#GoBack_button:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.18);
+    outline-offset: 3px;
+}
+
+/* Chat container: use viewport-aware height and grid */
+.chat_container {
+    width: 100%;
+    max-width: 980px;
+    margin: 18px auto;
+    display: grid;
+    grid-template-rows: 1fr auto; /* messages take remaining space, footer stays visible */
+    gap: 8px;
+    height: calc(100vh - 110px); /* adjust top offset as needed */
+    min-height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--muted-border);
+    box-shadow: 0 12px 30px rgba(16, 24, 40, 0.04);
+}
+
+/* Messages screen: scrollable column */
+#messages_screen {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.6),
+        rgba(250, 250, 254, 0.6)
+    );
+}
+
+/* Improve scrollbar visibility but subtle */
+#messages_screen::-webkit-scrollbar {
+    width: 10px;
+}
+#messages_screen::-webkit-scrollbar-thumb {
+    background: rgba(16, 24, 40, 0.1);
+    border-radius: 8px;
+}
+
+/* Messages: base common rules */
+#message_from_other,
+#message_from_me {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    max-width: 82%;
+    word-wrap: break-word;
+    line-height: 1.35;
+}
+
+/* Incoming messages (other people): left aligned */
+#message_from_other {
+    align-self: flex-start;
+    background: linear-gradient(180deg, var(--accent-blue), #1e40af);
+    color: #fff;
+    border-radius: 0 12px 12px 12px; /* top-left sharp, others rounded as you had */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 18px rgba(16, 24, 40, 0.1);
+}
+
+/* Messages from me: right aligned */
+#message_from_me {
+    align-self: flex-end;
+    background: linear-gradient(180deg, var(--accent-green), #059669);
+    color: #fff;
+    border-radius: 12px 0 12px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 18px rgba(6, 95, 70, 0.08);
+}
+
+/* Sender info block (avatar + name) */
+#sender_info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+}
+#sender_info #sender_image {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+/* message text & date */
+#message_sent {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    color: inherit;
+    white-space: pre-wrap; /* preserve breaks, wrap long words */
+}
+#date_sent {
+    margin: 0;
+    padding: 0;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.78);
+    align-self: flex-end;
+}
+
+/* If messages have light background (e.g. inverting on light theme) ensure text color */
+#messages_screen .light-bubble {
+    background: #fbfdff;
+    color: var(--text);
+    border: 1px solid var(--muted-border);
+}
+
+/* Footer: form area; responsive grid */
+.chat_container footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid var(--muted-border);
+    background: linear-gradient(
+        180deg,
+        rgba(246, 248, 250, 0.7),
+        rgba(255, 255, 255, 0.8)
+    );
+}
+
+/* textarea/input area */
+#message_content {
+    font-size: 1.03rem;
+    padding: 10px 12px;
+    resize: vertical;
+    min-height: 46px;
+    max-height: 160px;
+    border-radius: 10px;
+    border: 1px solid rgba(15, 23, 36, 0.06);
+    outline: none;
+    width: 100%;
+    background: #fff;
+}
+#message_content:focus-visible {
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.06);
+    border-color: rgba(37, 99, 235, 0.16);
+}
+
+/* send button */
+#send_button {
+    font-size: 1.03rem;
+    background-color: #16a34a; /* green */
+    color: white;
+    border-radius: 10px;
+    padding: 10px 14px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(16, 148, 95, 0.08);
+    white-space: nowrap;
+}
+#send_button:hover {
+    transform: translateY(-2px);
+    transition: transform 0.12s ease;
+}
+#send_button:active {
+    background-color: #0f8a35;
+}
+#send_button:focus-visible {
+    outline: 3px solid rgba(16, 148, 95, 0.14);
+    outline-offset: 3px;
+}
+
+/* Accessible disabled state */
+#send_button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsive: on small screens stack button under textarea */
+@media (max-width: 560px) {
+    .chat_container {
+        height: calc(100vh - 84px);
+        min-height: 360px;
+    }
+    .chat_container footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    #send_button {
+        width: 100%;
+    }
+    #GoBack_button {
+        top: 8px;
+        left: 8px;
+        padding: 7px 10px;
+    }
+    #sender_info #sender_image {
+        width: 22px;
+        height: 22px;
+    }
+    #message_from_other,
+    #message_from_me {
+        max-width: 96%;
+        padding: 8px 10px;
+    }
+    #message_content {
+        min-height: 46px;
+        font-size: 1rem;
+    }
+}
+
+/* focus indicator for keyboard users */
+:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.14);
+    outline-offset: 3px;
+}
+
+/* reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+}
