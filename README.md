@@ -1,11 +1,11 @@
 #Laravel project by me Omar Ahmed (Tegar):
 
 #Installing:
-->composer install
-->npm install
+1-composer install
+2-npm install
 
 #Running locally:
-->npm run dev
+3-npm run dev
 
 And in another terminal:
-->php artisan serve
+4-php artisan serve
