@@ -1,4 +1,4 @@
-# Laravel project by me Omar Ahmed (Tegar):
+# Laravel project by Omar Ahmed (Tegar):
 
 # Installing:
 
